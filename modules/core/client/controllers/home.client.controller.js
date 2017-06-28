@@ -8,6 +8,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     // Some example string
 
     // $scope.helloText = 'โครงการยักษ์จับมือโจน ส่งถึงบ้าน';
+    $scope.helloText = 'Welcome';
+    
     // $scope.descriptionText = 'แหล่งรวมสินค้า อาหาร ธรรมชาติ';
     if (!$scope.authentication.user) {
       $state.go('authentication.signin');

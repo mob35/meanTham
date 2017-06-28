@@ -6,7 +6,7 @@
         <div class="text-center m-t-lg">
           <!--<img alt="MEAN.JS" class=" text-center" src="modules/core/client/img/brand/logo.png" style="width: 200px" />-->
           <h1 class="font-h1">
-            {{helloText}}
+            <!--{{helloText}}-->
           </h1>
           <h3 class="font-h3">
             {{descriptionText}}
@@ -17,13 +17,13 @@
       </div>
     </div>
     <div class="row hidden-xs service">
-      <div class="col-xs-12 col-md-6 col-sm-6">
+      <div class="col-xs-12 col-md-12 col-sm-12">
         <div class="row">
-          <img src="./modules/users/client/img/thamturakit.jpg" class="img-rounded img-promotion" alt="">
+          <img src="./modules/users/client/img/welcome.png" class="img-rounded img-welcome" alt="">
         </div>
       </div>
 
-      <div class="col-xs-12 col-md-3 col-sm-6 border-right border-left border-top border-bottom img-rounded" ng-repeat="product in products">
+      <!--<div class="col-xs-12 col-md-3 col-sm-6 border-right border-left border-top border-bottom img-rounded" ng-repeat="product in products">
         <figure class="snip1174 white col-xs-12 col-md-3 col-sm-6">
           <img ng-src="{{product.images}}" class="img-product img-rounded" />
           <figcaption>
@@ -41,7 +41,7 @@
             </div>
           </div>
         </figure>
-      </div>
+      </div>-->
 
 
 
@@ -52,17 +52,17 @@
     <div class="row visible-xs">
       <div class="col-xs-12">
         <div class="row">
-          <img src="./modules/users/client/img/promotion.jpg" class="img-promotion-xs" alt="">
+          <img src="./modules/users/client/img/welcome.png" class="img-welcome-xs" alt="">
         </div>
       </div>
-      <div class="col-xs-12 border-right border-left border-top border-bottom img-rounded" ng-repeat="product in products">
+      <!--<div class="col-xs-12 border-right border-left border-top border-bottom img-rounded" ng-repeat="product in products">
         <div class="row text-center" ui-sref="products.view({ productId: product._id })">
           <img ng-src="{{product.images}}" class="text-center img-rounded img-promotion img-product border-bottom" title="สั่งซื้อเลย!">
         </div>
         <h4 class="card-title word-break">{{product.name}}</h4>
-              <p class="card-text word-break1">{{product.description}}</p>
-              <h4 class="card-title text-warning ">{{product.price}} บาท</h4>
-      </div>
+        <p class="card-text word-break1">{{product.description}}</p>
+        <h4 class="card-title text-warning ">{{product.price}} บาท</h4>
+      </div>-->
     </div>
   </div>
 </section>

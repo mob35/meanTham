@@ -8511,6 +8511,18 @@ body.md-skin {
   margin-top: 32px;
 }
 
+.img-welcome{
+  width:100% !important;
+  box-shadow: 3px 3px 3px #ffffff;
+  margin-top: 32px;
+}
+
+.img-welcome-xs{
+  width:100% !important; 
+  box-shadow: 3px 3px 3px #ffffff;
+  margin-top: 32px;
+}
+
 .font-h1{
   color: #1ab394;
 }

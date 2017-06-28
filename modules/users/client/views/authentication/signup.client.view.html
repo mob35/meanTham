@@ -119,9 +119,14 @@
                   <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>
                 </div>-->
                 <div class="form-group">
+                  <label for="password">Role</label>
+                  <div>
+                    <label class="radio-inline"><input type="radio" ng-model="role" ng-checked="true" value="deliver">Deliver</label>
+                    <label class="radio-inline"><input type="radio" ng-model="role" value="transporter">Transporter</label>
+                  </div>
                   <!--<input type="radio" ng-model="role" ng-checked="true" value="user">User-->
-                  <input type="radio" ng-model="role" ng-checked="true" value="deliver">Deliver
-                  <input type="radio" ng-model="role" value="transporter">Transporter
+                  <!--<input type="radio" ng-model="role" ng-checked="true" value="deliver">Deliver
+                  <input type="radio" ng-model="role" value="transporter">Transporter-->
                 </div>
                 <div class="min-height-20"></div>
                 <div class="text-center form-group">
