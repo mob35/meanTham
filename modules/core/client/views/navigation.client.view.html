@@ -54,11 +54,11 @@
         <span class="nav-label menu-headline">ขายสินค้า</span>
       </li>
       <li class="dropdown" ng-class="{active: $uiRoute}" ng-if="authentication.user.roles[0] === 'admin'" ui-route="/products">
-        <a href="/#/products"><i class="fa fa-shopping-cart"></i> <span class="nav-label">รายการสินค้า</span></a>
+        <a href="/#/products"><i class="fa fa-product-hunt"></i> <span class="nav-label">รายการสินค้า</span></a>
       </li>
       <li class="{{item.class}}" ng-class="{ active: $state.includes(item.state)}" ng-hide="item.title === 'Payments' || item.title === 'Admin' ||  item.title === 'รายการผังบัญชี' || item.title === 'Promotions' || item.title === 'รายการใบแจ้งหนี้' || item.title === 'Products' || item.title === 'รายการขนส่งข้าว' || item.title === 'รายการใบแจ้งคืน' || item.title === 'Marketplans' || item.title === 'Campaigns' || item.title === 'Marketplans' || item.title === 'แบบสอบถาม' || item.title === 'Chat' || item.title === 'Chatrooms' || item.title === 'Downloads'"
         ng-if="item.shouldRender(authentication.user);" ng-repeat="item in menu.items | orderBy: 'position'" ng-show="authentication.user.roles[0] !== 'deliver'">
-        <a href="/#/{{item.state}}"><i class="{{item.title === 'Products' ? 'fa fa-shopping-cart' :  item.title === 'Orders' ? 'fa fa-list-alt': 'fa fa-laptop'}}"></i> <span class="nav-label">{{item.title === 'Products' ? 'เลือกซื้อสินค้า':item.title === 'Admin' ? 'ผู้ดูแลระบบ':item.title === 'Managebanks' ? 'การจัดการธนาคาร':item.title === 'me' ? 'ประวัติการสั่งซื้อ':item.title === 'Orders' ? 'รายการสั่งซื้อ':item.title === 'Promotions' ? 'โปรโมชั่น': item.title}}&nbsp;</span></a>
+        <a href="/#/{{item.state}}"><i class="{{item.title === 'Products' ? 'fa fa-product-hunt' :  item.title === 'Orders' ? 'fa fa-list-alt': 'fa fa-laptop'}}"></i> <span class="nav-label">{{item.title === 'Products' ? 'เลือกซื้อสินค้า':item.title === 'Admin' ? 'ผู้ดูแลระบบ':item.title === 'Managebanks' ? 'การจัดการธนาคาร':item.title === 'me' ? 'ประวัติการสั่งซื้อ':item.title === 'Orders' ? 'รายการสั่งซื้อ':item.title === 'Promotions' ? 'โปรโมชั่น': item.title}}&nbsp;</span></a>
       </li>
       <li class="dropdown" ng-class="{active: $uiRoute}" ng-if="authentication.user.roles[0] === 'admin'" ui-route="/accuralreceipts">
         <a href="/#/accuralreceipts"><i class="fa fa-file-text-o"></i> <span class="nav-label">รายการใบแจ้งหนี้</span></a>
