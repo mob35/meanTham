@@ -8487,6 +8487,13 @@ body.md-skin {
   min-width: 100% !important;
   min-height: 500px;
 }
+.img-new-product {
+  width: 100% !important;
+  max-height: 500px;
+  min-width: 100% !important;
+  min-height: 500px;
+  background-image: url('../img/upload/upload-image.png');
+}
 .img-campaign-detail {
   max-width: 150px !important;
   max-height: 150px;
@@ -8514,13 +8521,15 @@ body.md-skin {
 .img-welcome{
   width:100% !important;
   box-shadow: 3px 3px 3px #ffffff;
-  margin-top: 32px;
+  margin-bottom: 10px;
+  /*margin-top: 32px;*/
 }
 
 .img-welcome-xs{
   width:100% !important; 
   box-shadow: 3px 3px 3px #ffffff;
-  margin-top: 32px;
+  margin-bottom: 10px;
+  /*margin-top: 32px;*/
 }
 
 .font-h1{
@@ -8656,15 +8665,23 @@ text-overflow: ellipsis;
 
 .chat-text {
       position: relative;
-  }
-
+}
 .bottom-align-text-right {
     position: absolute;
     bottom: 0;
     right: 41%;
-  }
-  .bottom-align-text-left {
+}
+.bottom-align-text-left {
     position: absolute;
     bottom: 0;
     left: 41%;
-  }
+}
+.vertical-align-middle {
+  display: inline-block;
+  vertical-align: -webkit-baseline-middle;
+  line-height: normal;
+}
+.headTable {
+  background-color: lightgray;
+  height: 35px;
+}

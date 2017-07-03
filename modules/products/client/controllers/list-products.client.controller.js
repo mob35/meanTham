@@ -5,9 +5,9 @@
     .module('products')
     .controller('ProductsListController', ProductsListController);
 
-  ProductsListController.$inject = ['ProductsService', 'Authentication', 'PromotionsService'];
+  ProductsListController.$inject = ['ProductsService', 'Authentication', 'PromotionsService', '$scope'];
 
-  function ProductsListController(ProductsService, Authentication, PromotionsService) {
+  function ProductsListController(ProductsService, Authentication, PromotionsService, $scope) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -31,6 +31,13 @@
 
       });
     }
-    
+    $scope.filter = function (topsearch) {
+      if (topsearch.length >= 5) {
+        $scope.filterText = topsearch;
+      } else {
+        $scope.filterText = '';
+      }
+    };
+
   }
-} ());
+}());

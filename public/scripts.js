@@ -49,10 +49,10 @@ $(function() {
     $(window).bind("load resize", function() {
         if ($(this).width() < 769) {
             $('body').addClass('body-small')
-            $('body').addClass('fixed-sidebar') 
+            // $('body').addClass('fixed-sidebar') 
         } else {
-            // $('body').removeClass('body-small')
-            $('body').removeClass('fixed-sidebar')
+            $('body').removeClass('body-small')
+            // $('body').removeClass('fixed-sidebar')
         }
     })
 });
