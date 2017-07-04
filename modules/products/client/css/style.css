@@ -1,9 +1,12 @@
 .word-break{
-   white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+.wordSpan{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .margin-bottom-20{
     margin-bottom: 20px;
 }

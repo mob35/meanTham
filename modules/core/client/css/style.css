@@ -3457,6 +3457,7 @@ a:focus {
   text-decoration: none;
 }
 .border-bottom {
+  margin-top: 5px;
   border-bottom: 1px solid #e7eaec !important;
 }
 .font-bold {
@@ -3745,9 +3746,10 @@ body.body-small .footer.fixed {
 .border-top {
   border-top: 1px solid #e7eaec;
 }
-.border-bottom {
+/*.border-bottom {
+  margin-top: 10px;
   border-bottom: 1px solid #e7eaec;
-}
+}*/
 .border-size-sm {
   border-width: 3px;
 }
@@ -8684,4 +8686,9 @@ text-overflow: ellipsis;
 .headTable {
   background-color: lightgray;
   height: 27px;
+}
+.dropdownClass {
+  background-color: white !important;
+  font-weight: 400 !important;
+  margin-bottom: 1px !important;
 }

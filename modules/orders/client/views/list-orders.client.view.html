@@ -14,23 +14,37 @@
         </div>
       </div>
     </div>
+
     <div class="row container">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
-          <ul class="nav nav-tabs">
-            <li><a data-target="#showAllOrders" data-toggle="tab">ทั้งหมด ({{vm.orders.length  || 0}})</a></li>
-            <li class="active"><a data-target="#showConfirmed" data-toggle="tab">รอคนส่ง ({{confirmedOrd.length  || 0}})</a></li>
-            <li><a data-target="#showAllDeli" data-toggle="tab">ยอมรับ ({{Ordersaccept.length || 0}})</a></li>
-            <li><a data-target="#showAllDeli" data-toggle="tab">ปฏิเสธ ({{Ordersreject.length || 0}})</a></li>
-            <li><a data-target="#showAllDeli" data-toggle="tab">สำเร็จ ({{Orderscomplete.length || 0}})</a></li>
-            <li><a data-target="#showAllDeli" data-toggle="tab">ยกเลิกรายการ ({{Orderscancel.length || 0}})</a></li>
+          <ul class="nav nav-tabs hidden-xs">
+            <li class="active"><a data-target="#showAllOrders" data-toggle="tab">ทั้งหมด ({{vm.orders.length  || 0}})</a></li>
+            <li><a data-target="#showConfirmed" data-toggle="tab">รอคนส่ง ({{confirmedOrd.length  || 0}})</a></li>
+            <li><a data-target="#showAccept" data-toggle="tab">ยอมรับ ({{Ordersaccept.length || 0}})</a></li>
+            <li><a data-target="#showReject" data-toggle="tab">ปฏิเสธ ({{Ordersreject.length || 0}})</a></li>
+            <li><a data-target="#showComplete" data-toggle="tab">สำเร็จ ({{Orderscomplete.length || 0}})</a></li>
+            <li><a data-target="#showCancel" data-toggle="tab">ยกเลิก ({{Orderscancel.length || 0}})</a></li>
+          </ul>
+          <!---->
+
+          <ul class="nav nav-tabs show-xs hidden-sm hidden-md hidden-lg">
+            <li class="dropdown dropdownClass">
+              <a class="dropdown-toggle dropdownClass" data-toggle="dropdown" href="#" style="color:#444648">รายการเมนู <span class="caret"></span><span ng-if="menulist"> ({{menulist}})</span></a>
+              <ul class="dropdown-menu">
+                <li><a data-target="#showAllOrders" data-toggle="tab" ng-click="menulist='ทั้งหมด'">ทั้งหมด ({{vm.orders.length  || 0}})</a></li>
+                <li><a data-target="#showConfirmed" data-toggle="tab" ng-click="menulist='รอคนส่ง'">รอคนส่ง ({{confirmedOrd.length  || 0}})</a></li>
+                <li><a data-target="#showAccept" data-toggle="tab" ng-click="menulist='ยอมรับ'">ยอมรับ ({{Ordersaccept.length || 0}})</a></li>
+                <li><a data-target="#showReject" data-toggle="tab" ng-click="menulist='ปฏิเสธ'">ปฏิเสธ ({{Ordersreject.length || 0}})</a></li>
+                <li><a data-target="#showComplete" data-toggle="tab" ng-click="menulist='สำเร็จ'">สำเร็จ ({{Orderscomplete.length || 0}})</a></li>
+                <li><a data-target="#showCancel" data-toggle="tab" ng-click="menulist='ยกเลิก'">ยกเลิก ({{Orderscancel.length || 0}})</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
-
-
         <div class="tab-content">
-          <div class="tab-pane" id="showAllOrders">
-            <div class="row form-group headTable">
+          <div class="tab-pane active" id="showAllOrders">
+            <div class="row form-group headTable hidden-xs">
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
               </div>
@@ -53,43 +67,76 @@
                 <strong class="vertical-align-middle">สถานะ</strong>
               </div>
             </div>
-            <!--<div class="row form-group border-bottom" ng-repeat="order in vm.orders | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">-->
-            <div class="row form-group border-bottom" ui-sref="orders.edit({ orderId: order._id })">
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <!--<span class="list-group-item-heading" ng-bind="order.user.displayName"></span><br>-->
-                <!--<span class="list-group-item-heading" ng-bind="order.docno"></span>-->
-                <span class="list-group-item-heading">นภัสรัญชน์ มิตรธีรโรจน์ test1</span><br>
-                <span class="list-group-item-heading">CN1498736196024</span>
+            <div class="row form-group border-bottom" ng-repeat="order in vm.orders | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>บิลสั่งซื้อ</label>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
-                <p class="list-group-item-heading">0.00</p>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break" ng-bind="order.user.displayName"></span><br>
+                <span class="list-group-item-heading" ng-bind="order.docno"></span>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <p class="list-group-item-heading">-</p>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รวม</label>
               </div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <!--<p class="list-group-item-heading word-break" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>-->
-                <p class="list-group-item-heading word-break">28/3 หมู่4 ซอยนิ่มทิม ถ.บางกรวย-จงถนอม ต.บางขนุน อ.บางกราวย จ.นนทบุรี 11130</p>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading" ng-bind="order.totalamount | number:2"></span>
               </div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <!--<p><i class="fa fa-user text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='confirmed'"></i><i class="fa fa-user text-default" aria-hidden="true" ng-show="order.deliverystatus ==='wait deliver'"></i><span ng-bind="order.namedeliver.displayName"></span><p>-->
-                <p><i class="fa fa-user text-warning" aria-hidden="true"></i><i class="fa fa-user text-default" aria-hidden="true"></i><span>ในพื้นที่จัดส่ง</span></p>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รับเงิน</label>
               </div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <!--<time am-time-ago="order.created"></time>-->
-                <p>4 วันที่แล้ว</p>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading">-</span>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <!--<p class="list-group-item-heading" ng-show="order.deliverystatus ==='confirmed'">confirmed</p>
-                <p class="list-group-item-heading" ng-show="order.deliverystatus ==='accept'">accept</p>
-                <p class="list-group-item-heading" ng-show="order.deliverystatus ==='reject'">reject</p>
-                <p class="list-group-item-heading" ng-show="order.deliverystatus ==='complete'">complete</p>
-                <p class="list-group-item-heading" ng-show="order.deliverystatus ==='cancel'">cancel</p>
-                <p class="list-group-item-heading" ng-show="order.deliverystatus ==='wait deliver'">wait</p>-->
-                <p class="list-group-item-heading">confirmed</p>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ที่อยู่จัดส่ง</label>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center" style="top: 6px">
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break show-xs hidden-sm hidden-md hidden-lg" ng-bind="order.shipping.address"></span>
+                <span class="list-group-item-heading word-break show-xs hidden-sm hidden-md hidden-lg" ng-bind="order.shipping.subdistrict + ' ' + order.shipping.district"></span>
+                <span class="list-group-item-heading word-break show-xs hidden-sm hidden-md hidden-lg" ng-bind="order.shipping.province  + ' ' + order.shipping.postcode"></span>
+
+                <span class="list-group-item-heading wordSpan hidden-xs" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>การจัดส่ง</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="word-break">
+                  <i class="fa fa-user text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='confirmed'"></i>
+                  <i class="fa fa-user text-default" aria-hidden="true" ng-show="order.deliverystatus ==='wait deliver'"></i>
+                  <span ng-bind="order.namedeliver.displayName"></span>
+                <span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>วันที่สั่งซื้อ</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <time class="word-break" am-time-ago="order.created"></time>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>สถานะ</label>
+              </div>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='confirmed'">confirmed</span>
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='accept'">accept</span>
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='reject'">reject</span>
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='complete'">complete</span>
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='cancel'">cancel</span>
+                <span class="list-group-item-heading word-break" ng-show="order.deliverystatus ==='wait deliver'">wait deliver</span>
+              </div>
+              <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-right">
                 <a><i class="fa fa-wrench" style="color: gray"></i></a>
               </div>
             </div>
@@ -97,8 +144,7 @@
               <button type="button" ng-click="vm.loadmoreOrders()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreOrders}}</button>
             </div>
           </div>
-          <!---->
-          <div class="tab-pane active" id="showConfirmed">
+          <div class="tab-pane" id="showConfirmed">
             <div class="row form-group headTable">
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
@@ -158,29 +204,239 @@
               <button type="button" ng-click="vm.loadmoreConfirmed()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreConfirmed}}</button>
             </div>
           </div>
-        </div>
-      </div>
-      <!---->
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="tabbable">
-          <!--<div class="row">
-            <div class="col-md-5 hidden-xs hidden-sm show-md show-lg">
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#deliActive" data-target="#deliActive, #showAllDeli" data-toggle="tab" class="active">คนส่งข้าว</a></li>
-              </ul>
-            </div>
-            <div class="col-md-7 hidden-xs hidden-sm show-md show-lg">
-              <div class="input-group input-group-sm">
-                <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="ค้นหา... (อย่างน้อย 5 ตัวอักษร)" ng-model="topsearch" ng-change="filter(topsearch)"
-                  aria-describedby="sizing-addon3">
+          <div class="tab-pane" id="showAccept">
+            <div class="row form-group headTable">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รวม</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รับเงิน</strong>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <strong class="vertical-align-middle">ที่อยู่จัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">การจัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">วันที่สั่งซื้อ</strong>
               </div>
             </div>
-          </div>-->
-          <!---->
+            <!--<div class="row form-group border-bottom" ng-repeat="order in Ordersaccept | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">-->
+            <div class="row form-group border-bottom" ui-sref="orders.edit({ orderId: order._id })">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<span class="list-group-item-heading" ng-bind="order.user.displayName"></span><br>-->
+                <!--<span class="list-group-item-heading" ng-bind="order.docno"></span>-->
+                <span class="list-group-item-heading">นภัสรัญชน์ มิตรธีรโรจน์ test3</span><br>
+                <span class="list-group-item-heading">CN1498736196024</span>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="list-group-item-heading">-</p>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <!--<p class="list-group-item-heading word-break" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>-->
+                <p class="list-group-item-heading word-break">28/3 หมู่4 ซอยนิ่มทิม ถ.บางกรวย-จงถนอม ต.บางขนุน อ.บางกราวย จ.นนทบุรี 11130</p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<p><i class="fa fa-user text-info" aria-hidden="true" ng-show="order.namedeliver"></i><span ng-bind="order.namedeliver.displayName"></span></p>-->
+                <p><i class="fa fa-user text-info" aria-hidden="true"></i><span>ในพื้นที่จัดส่ง</span></p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<time am-time-ago="order.created"></time>-->
+                <p>4 วันที่แล้ว</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center" style="top: 6px">
+                <a><i class="fa fa-wrench" style="color: gray"></i></a>
+              </div>
+            </div>
+            <div class="form-group hidden-xs" ng-if="leftMoreAccept > 0">
+              <button type="button" ng-click="vm.loadmoreAccept()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreAccept}}</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="showReject">
+            <div class="row form-group headTable">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รวม</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รับเงิน</strong>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <strong class="vertical-align-middle">ที่อยู่จัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">การจัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">วันที่สั่งซื้อ</strong>
+              </div>
+            </div>
+            <!--<div class="row form-group border-bottom" ng-repeat="order in Ordersreject | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">-->
+            <div class="row form-group border-bottom" ui-sref="orders.edit({ orderId: order._id })">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<span class="list-group-item-heading" ng-bind="order.user.displayName"></span><br>-->
+                <!--<span class="list-group-item-heading" ng-bind="order.docno"></span>-->
+                <span class="list-group-item-heading">นภัสรัญชน์ มิตรธีรโรจน์ test4</span><br>
+                <span class="list-group-item-heading">CN1498736196024</span>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <p class="list-group-item-heading">-</p>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <!--<p class="list-group-item-heading word-break" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>-->
+                <p class="list-group-item-heading word-break">28/3 หมู่4 ซอยนิ่มทิม ถ.บางกรวย-จงถนอม ต.บางขนุน อ.บางกราวย จ.นนทบุรี 11130</p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<p><i class="fa fa-user text-danger" aria-hidden="true" ng-show="!order.namedeliver"></i></p>-->
+                <p><i class="fa fa-user text-danger" aria-hidden="true"></i></p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<time am-time-ago="order.created"></time>-->
+                <p>4 วันที่แล้ว</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center" style="top: 6px">
+                <a><i class="fa fa-wrench" style="color: gray"></i></a>
+              </div>
+            </div>
+            <div class="form-group hidden-xs" ng-if="leftMoreReject > 0">
+              <button type="button" ng-click="vm.loadmoreReject()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreReject}}</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="showComplete">
+            <div class="row form-group headTable">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รวม</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รับเงิน</strong>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <strong class="vertical-align-middle">ที่อยู่จัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">การจัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">วันที่สั่งซื้อ</strong>
+              </div>
+            </div>
+            <!--<div class="row form-group border-bottom" ng-repeat="order in Orderscomplete | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">-->
+            <div class="row form-group border-bottom" ui-sref="orders.edit({ orderId: order._id })">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<span class="list-group-item-heading" ng-bind="order.user.displayName"></span><br>-->
+                <!--<span class="list-group-item-heading" ng-bind="order.docno"></span>-->
+                <span class="list-group-item-heading">นภัสรัญชน์ มิตรธีรโรจน์ test5</span><br>
+                <span class="list-group-item-heading">CN1498736196024</span>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <!--<p class="list-group-item-heading word-break" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>-->
+                <p class="list-group-item-heading word-break">28/3 หมู่4 ซอยนิ่มทิม ถ.บางกรวย-จงถนอม ต.บางขนุน อ.บางกราวย จ.นนทบุรี 11130</p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<p><i class="fa fa-user text-info" aria-hidden="true" ng-show="order.namedeliver"></i><span ng-bind="order.namedeliver.displayName"></span></p>-->
+                <p><i class="fa fa-user text-info" aria-hidden="true"></i><span>ในพื้นที่จัดส่ง</span></p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<time am-time-ago="order.created"></time>-->
+                <p>4 วันที่แล้ว</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center" style="top: 6px">
+                <a><i class="fa fa-wrench" style="color: gray"></i></a>
+              </div>
+            </div>
+            <div class="form-group hidden-xs" ng-if="leftMoreComplete > 0">
+              <button type="button" ng-click="vm.loadmoreComplete()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreComplete}}</button>
+            </div>
+          </div>
+          <div class="tab-pane" id="showCancel">
+            <div class="row form-group headTable">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">บิลสั่งซื้อลูกค้า</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รวม</strong>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <strong class="vertical-align-middle">รับเงิน</strong>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <strong class="vertical-align-middle">ที่อยู่จัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">การจัดส่ง</strong>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <strong class="vertical-align-middle">วันที่สั่งซื้อ</strong>
+              </div>
+            </div>
+            <!--<div class="row form-group border-bottom" ng-repeat="order in Orderscancel | filter:filterText | limitTo: vm.limitTo" ui-sref="orders.edit({ orderId: order._id })">-->
+            <div class="row form-group border-bottom" ui-sref="orders.edit({ orderId: order._id })">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<span class="list-group-item-heading" ng-bind="order.user.displayName"></span><br>-->
+                <!--<span class="list-group-item-heading" ng-bind="order.docno"></span>-->
+                <span class="list-group-item-heading">นภัสรัญชน์ มิตรธีรโรจน์ test6</span><br>
+                <span class="list-group-item-heading">CN1498736196024</span>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <!--<p class="list-group-item-heading" ng-bind="order.totalamount | number:2"></p>-->
+                <p class="list-group-item-heading">0.00</p>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <!--<p class="list-group-item-heading word-break" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>-->
+                <p class="list-group-item-heading word-break">28/3 หมู่4 ซอยนิ่มทิม ถ.บางกรวย-จงถนอม ต.บางขนุน อ.บางกราวย จ.นนทบุรี 11130</p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<p><i class="fa fa-user text-info" aria-hidden="true" ng-show="order.namedeliver"></i><span ng-bind="order.namedeliver.displayName"></span></p>-->
+                <p><i class="fa fa-user text-info" aria-hidden="true"></i><span>ในพื้นที่จัดส่ง</span></p>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <!--<time am-time-ago="order.created"></time>-->
+                <p>4 วันที่แล้ว</p>
+              </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center" style="top: 6px">
+                <a><i class="fa fa-wrench" style="color: gray"></i></a>
+              </div>
+            </div>
+            <div class="form-group hidden-xs" ng-if="leftMoreCancel > 0">
+              <button type="button" ng-click="vm.loadmoreCancel()" class="btn btn-primary btn-block">เหลืออีก {{leftMoreCancel}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="row">
+      <div class="col-md-12">
+        <div class="tabbable">
           <div class="tab-content">
             <div class="tab-pane active" id="deliActive">
               <div class="tabbable tabs-left">
@@ -239,7 +495,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="tab-content">
                       <div class="tab-pane" id="showAllDeli">
                         <div class="row hidden-xs show-sm show-md show-lg" ng-repeat="order in vm.orders | filter:filterText | limitTo: vm.limitTo"
@@ -276,13 +531,6 @@
                                 <p class="list-group-item-heading" ng-show="order.deliverystatus ==='complete'">complete</p>
                                 <p class="list-group-item-heading" ng-show="order.deliverystatus ==='cancel'">cancel</p>
                                 <p class="list-group-item-heading" ng-show="order.deliverystatus ==='wait deliver'">wait</p>
-
-                                <!--<i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='confirmed'"></i>
-                              <i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='accept'"></i>
-                              <i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='reject'"></i>
-                              <i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='complete'"></i>
-                              <i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='cancel'"></i>
-                              <i class="fa fa-circle text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='wait deliver'"></i>-->
                               </div>
                             </div>
                           </div>
@@ -374,7 +622,6 @@
                             </div>
                           </div>
                         </div>
-                        <!--cancal-->
                         <div class="row hidden-xs show-sm show-md show-lg" ng-repeat="order in vm.cancelDeli | filter:filterText" ui-sref="orders.edit({ orderId: order._id })">
                           <div class="col-md-12">
                             <div class="row form-group">
@@ -403,7 +650,6 @@
                             </div>
                           </div>
                         </div>
-                        <!--cancal-->
 
                       </div>
                       <div class="tab-pane active" id="showConfirmedDeli">
@@ -427,7 +673,6 @@
                                 <p class="list-group-item-heading dotpy" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>
                               </div>
                               <div class="col-xs-3 col-sm-3 col-md-3">
-                                <!--<span>คนส่งข้าว</span>-->
                                 <i class="fa fa-user text-warning" aria-hidden="true" ng-show="order.deliverystatus ==='confirmed'"></i>
                                 <i class="fa fa-user text-default" aria-hidden="true" ng-show="order.deliverystatus ==='wait deliver'"></i>
                                 <label ng-bind="order.namedeliver.displayName"></label>
@@ -463,7 +708,6 @@
                                 <p class="list-group-item-heading dotpy" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>
                               </div>
                               <div class="col-xs-3 col-sm-3 col-md-3">
-                                <!--<span>คนส่งข้าว</span>-->
                                 <i class="fa fa-user text-info" aria-hidden="true" ng-show="order.namedeliver"></i>
                                 <label ng-bind="order.namedeliver.displayName"></label>
                               </div>
@@ -498,7 +742,6 @@
                                 <p class="list-group-item-heading dotpy" ng-bind="order.shipping.address + ' ' + order.shipping.subdistrict + ' ' + order.shipping.district + ' ' + order.shipping.province  + ' ' + order.shipping.postcode"></p>
                               </div>
                               <div class="col-xs-3 col-sm-3 col-md-3">
-                                <!--<span>คนส่งข้าว</span>-->
                                 <i class="fa fa-user text-danger" aria-hidden="true" ng-show="!order.namedeliver"></i>
                               </div>
                               <div class="col-xs-2 col-sm-2 col-md-2">
@@ -587,7 +830,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!--<div class="row show-xs hidden-sm hidden-md hidden-lg" ng-repeat="order in vm.orders | filter:filterText" ui-sref="orders.edit({ orderId: order._id })">
       <div class="col-md-12">
@@ -611,6 +854,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
