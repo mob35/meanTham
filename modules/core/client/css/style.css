@@ -8691,4 +8691,5 @@ text-overflow: ellipsis;
   background-color: white !important;
   font-weight: 400 !important;
   margin-bottom: 1px !important;
+  border: 0 !important;
 }
