@@ -13,6 +13,7 @@
 
     $scope.setTabGreen = 'buttonGreenForm';
     vm.limitTo = 8;
+    $scope.menulist = 'ทั้งหมด';
     $scope.Ordersconfirmed = [];
     $scope.Orderswait = [];
     $scope.Ordersaccept = [];
