@@ -21,7 +21,19 @@ angular.module('users.admin').controller('UserListController', ['$scope', '$filt
       $scope.buildPager();
     });
 
+    $scope.menulist = 'ผู้ใช้';
+    $scope.clearfilter = function () {
+      $scope.topsearch = '';
+      $scope.filterText = '';
+    };
 
+    $scope.filter = function (topsearch) {
+      if (topsearch.length > 4) {
+        $scope.filterText = topsearch;
+      } else {
+        $scope.filterText = '';
+      }
+    };
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];
