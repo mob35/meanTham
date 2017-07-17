@@ -35,7 +35,6 @@
           </li>
         </ul>
       </div>
-      <!--  -->
       <div class="tab-content">
         <div class="tab-pane active" id="showAllUser">
           <div class="row form-group headTable hidden-xs">
@@ -91,26 +90,26 @@
 
           </div>
           <div class="row form-group border-bottom" ng-repeat="users in listdeli | filter:filterText" ui-sref="admin.user-edit({ userId: users._id })">
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>บิลสั่งซื้อ</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> 
+            <div class="col-xs-7 col-sm-3 col-md-3 col-lg-3">
               <span class="list-group-item-heading word-break" ng-bind="users.displayName"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>รวม</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ที่อยู่</label>
+            </div> 
+            <div class="col-xs-7 col-sm-4 col-md-4 col-lg-4">
               <span class="list-group-item-heading" ng-bind="users.address.address + ' ' + users.address.subdistrict + ' ' + users.address.district + ' ' + users.address.province + ' ' + users.address.postcode"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>รับเงิน</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>เบอร์โทร</label>
+            </div> 
+            <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
               <span class="list-group-item-heading" ng-bind="users.address.tel"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
@@ -131,32 +130,31 @@
 
           </div>
           <div class="row form-group border-bottom" ng-repeat="users in listtran | filter:filterText" ui-sref="admin.user-edit({ userId: users._id })">
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>บิลสั่งซื้อ</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> 
+            <div class="col-xs-7 col-sm-3 col-md-3 col-lg-3">
               <span class="list-group-item-heading word-break" ng-bind="users.displayName"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>รวม</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ที่อยู่</label>
+            </div> 
+            <div class="col-xs-7 col-sm-4 col-md-4 col-lg-4">
               <span class="list-group-item-heading" ng-bind="users.address.address + ' ' + users.address.subdistrict + ' ' + users.address.district + ' ' + users.address.province + ' ' + users.address.postcode"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-            <!-- <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
-              <label>รับเงิน</label>
-            </div> -->
-            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+             <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>เบอร์โทร</label>
+            </div> 
+            <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
               <span class="list-group-item-heading" ng-bind="users.address.tel"></span>
             </div>
             <div class="row hidden-sm hidden-md hidden-lg"></div>
           </div>
         </div>
-        <!--  -->
       </div>
     </div>
   </div>

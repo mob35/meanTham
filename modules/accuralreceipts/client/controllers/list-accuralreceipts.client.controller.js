@@ -14,7 +14,7 @@
     vm.statusWaitreview = statusWaitreview;
     vm.addHis = addHis;
     $scope.setTabGreen = 'buttonGreenSet';
-
+    $scope.menulist = 'รอตรวจสอบ';
     vm.setLimit = function () {
       $scope.topsearch = '';
       $scope.filterText = '';
@@ -28,7 +28,7 @@
       }
     };
 
-    
+
     vm.remove = function (itm) {
       if ($window.confirm('คุณต้องการลบรายการนี้ ?')) {
         itm.$remove(successCallback, errorCallback);

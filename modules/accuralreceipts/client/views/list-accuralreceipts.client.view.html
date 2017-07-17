@@ -3,37 +3,135 @@
     <h1>รายการใบแจ้งหนี้</h1>
   </div>
 
-  <div class="row show-xs show-sm hidden-md hidden-lg marginT">
-    <div class="col-xs-8">
-      <input type="text" class="form-control" placeholder="ค้นหา... (อย่างน้อย 5 ตัวอักษร)" ng-model="topsearch" ng-change="filter(topsearch)">
-    </div>
-    <div class="col-xs-4">
-      <a class="btn buttonCreate" ui-sref="accuralreceipts.create">
-        <span>สร้างใหม่</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="tab-content">
-    <div class="row">
-      <div class="col-md-5">
-
+  <div class="row" style="height:50px">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="input-group input-group-sm">
+        <span class="input-group-addon btn btn-lg btn-primary hidden-xs show-sm show-md show-lg">Search</span>
+        <span class="input-group-addon show-xs hidden-sm hidden-md hidden-lg" id="sizing-addon3"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <input type="text" class="form-control" placeholder="อย่างน้อย 5 ตัวอักษร" ng-model="topsearch" ng-change="filter(topsearch)"
+          aria-describedby="sizing-addon3" />
       </div>
-      <div class="col-md-5 hidden-xs hidden-sm show-md show-lg">
-        <div class="input-group input-group-sm">
-          <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" placeholder="ค้นหา... (อย่างน้อย 5 ตัวอักษร)" ng-model="topsearch" ng-change="filter(topsearch)" aria-describedby="sizing-addon3">
-        </div>
-      </div>
-      <div class="col-md-2 hidden-xs hidden-sm show-md show-lg">
-        <div class="textCenter">
-          <a class="btn buttonCreate" ui-sref="accuralreceipts.create">
+    </div>
+    <div class="hidden-xs col-sm-6 col-md-6 col-lg-6 text-right">
+      <a class="btn buttonCreate btn-sm" ui-sref="accuralreceipts.create">
             <i class="fa fa-file-o" aria-hidden="true"></i>
             <span>สร้างใหม่</span>
           </a>
-        </div>
-      </div>
     </div>
+  </div>
+
+  <div class="row container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <ul class="nav nav-tabs hidden-xs" style="margin-bottom: 1px">
+          <li class="active"><a data-target="#waitreview" data-toggle="tab" ng-click="vm.setLimit()">รอตรวจสอบ ({{waitreview.length || 0}})</a></li>
+          <li><a data-target="#waitconfirmed" data-toggle="tab" ng-click="vm.setLimit()">รอยืนยัน ({{waitconfirmed.length || 0}})</a></li>
+          <li><a data-target="#confirmed" data-toggle="tab" ng-click="vm.setLimit()">ยืนยันแล้ว ({{confirmed.length || 0}})</a></li>
+          <li><a data-target="#receipt" data-toggle="tab" ng-click="vm.setLimit()">รับเงินแล้ว ({{receipt.length || 0}})</a></li>
+        </ul>
+        <!---->
+
+        <ul class="nav nav-tabs show-xs hidden-sm hidden-md hidden-lg">
+          <li class="dropdown dropdownClass">
+            <!-- <div class=""> -->
+              <a class="dropdown-toggle dropdownClass" data-toggle="dropdown" href="#" style="color:#444648">รายการเมนู <span class="caret"></span><span ng-if="menulist"> ({{menulist}})</span></a>
+            </div>
+            <!-- <div class="">
+              <a ui-sref="accuralreceipts.create"><i class="fa fa-file-o" aria-hidden="true"></i></a>
+            </div> -->
+
+            <ul class="dropdown-menu">
+              <li class="{{menulist === 'รอตรวจสอบ' ? 'active' : ' '}}"><a data-target="#waitreview" data-toggle="tab" ng-click="menulist='รอตรวจสอบ';vm.setLimit()">รอตรวจสอบ ({{waitreview.length || 0}})</a></li>
+              <li><a data-target="#waitconfirmed" data-toggle="tab" ng-click="menulist='รอยืนยัน';vm.setLimit()">รอยืนยัน ({{waitconfirmed.length || 0}})</a></li>
+              <li><a data-target="#confirmed" data-toggle="tab" ng-click="menulist='ยืนยันแล้ว';vm.setLimit()">ยืนยันแล้ว ({{confirmed.length || 0}})</a></li>
+              <li><a data-target="#receipt" data-toggle="tab" ng-click="menulist='รับเงินแล้ว';vm.setLimit()">รับเงินแล้ว ({{receipt.length || 0}})</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--  -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="waitreview">
+          <div class="row form-group headTable hidden-xs">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">รหัสใบแจ้งหนี้</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">ชื่อคนส่งข้าว</strong>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <strong class="vertical-align-middle">ที่อยู่</strong>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+              <strong class="vertical-align-middle">รวม</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">วันที่สร้าง</strong>
+            </div>
+          </div>
+          <div class="row form-group border-bottom" ng-repeat="data in vm.accuralreceipts | filter:filterText | filter:{arstatus:'wait for review'} as waitreview">
+
+            <div class="m-b-md" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })">
+              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> -->
+              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading" ng-bind="data.docno"></span>
+              </div>
+              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+
+              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> -->
+              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading" ng-bind="data.namedeliver.displayName"></span>
+              </div>
+              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+
+              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> -->
+              <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5">
+                <span class="list-group-item-heading" ng-bind="data.namedeliver.address.address +' '+ data.namedeliver.address.district +' '+ data.namedeliver.address.subdistrict +' '+ data.namedeliver.address.province +' '+ data.namedeliver.address.postcode +' '+ '('+data.namedeliver.address.tel+')'"></span>
+              </div>
+              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+
+              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> -->
+              <div class="col-xs-7 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading" ng-bind="data.totalamount"></span>
+              </div>
+              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+
+              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
+              <label>ชื่อผู้ใช้</label>
+            </div> -->
+              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading"><time am-time-ago="data.created"></time></span>
+              </div>
+              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+              <button type="button" class="btn buttonGreenForm btn-sm" ng-click="vm.statusWaitreview(data)"><span class="glyphicon glyphicon-check"></span> <span>รอยืนยัน</span></button>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="vm.remove(data)"><span class="glyphicon glyphicon-trash"></span> <span>ลบรายการ</span></button>
+              <button type="button" class="btn btn-warning btn-sm" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!--  -->
+    </div>
+  </div>
+
+
+  <!--  -->
+
+  <div class="tab-content">
     <div class="tab-pane active" id="allActive">
       <div class="tabbable tabs-left">
         <div class="row">
@@ -45,7 +143,6 @@
               <a href="#receipt" data-toggle="tab"><button ng-click="vm.setLimit();setTabDarkblue='buttonDarkblueSet';setTabGreen='';setTabBlueSky='';setTabPurple=''" class="thumbnail button buttonDarkblue" ng-class="setTabDarkblue" type="text"><span>รับเงินแล้ว</span><h3>{{receipt.length || 0}}</h3></button></a>
             </div>
           </div>
-          <!---->
           <div class="row show-xs show-sm hidden-md hidden-lg marginT">
             <div class="col-xs-3">
               <a href="#waitreviewmb" data-toggle="tab"><button type="text" class="btn btn-block btn-md buttonGreen">รอตรวจสอบ</button></a>
@@ -61,9 +158,7 @@
             </div>
           </div>
 
-          <!---->
           <div class="col-md-11 hidden-xs hidden-sm show-md show-lg">
-            <!--tap-->
             <div class="tab-content">
               <div class="tab-pane active" id="waitreview">
                 <div class="row">
