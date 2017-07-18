@@ -1,6 +1,11 @@
 <section class="header-height">
   <div class="page-header">
-    <h1>รายการใบแจ้งหนี้</h1>
+    <h1 class="hidden-xs">รายการใบแจ้งหนี้</h1>
+    <h2 class="hidden-sm hidden-md hidden-lg">รายการใบแจ้งหนี้
+      <div class="pull-right">
+        <a class="btn buttonCreate btn-xs" ui-sref="accuralreceipts.create"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      </div>
+    </h2>
   </div>
 
   <div class="row" style="height:50px">
@@ -20,7 +25,7 @@
     </div>
   </div>
 
-  <div class="row container">
+  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="row">
         <ul class="nav nav-tabs hidden-xs" style="margin-bottom: 1px">
@@ -29,16 +34,10 @@
           <li><a data-target="#confirmed" data-toggle="tab" ng-click="vm.setLimit()">ยืนยันแล้ว ({{confirmed.length || 0}})</a></li>
           <li><a data-target="#receipt" data-toggle="tab" ng-click="vm.setLimit()">รับเงินแล้ว ({{receipt.length || 0}})</a></li>
         </ul>
-        <!---->
 
         <ul class="nav nav-tabs show-xs hidden-sm hidden-md hidden-lg">
           <li class="dropdown dropdownClass">
-            <!-- <div class=""> -->
-              <a class="dropdown-toggle dropdownClass" data-toggle="dropdown" href="#" style="color:#444648">รายการเมนู <span class="caret"></span><span ng-if="menulist"> ({{menulist}})</span></a>
-            </div>
-            <!-- <div class="">
-              <a ui-sref="accuralreceipts.create"><i class="fa fa-file-o" aria-hidden="true"></i></a>
-            </div> -->
+            <a class="dropdown-toggle dropdownClass" data-toggle="dropdown" href="#" style="color:#444648">รายการเมนู <span class="caret"></span><span ng-if="menulist"> ({{menulist}})</span></a>
 
             <ul class="dropdown-menu">
               <li class="{{menulist === 'รอตรวจสอบ' ? 'active' : ' '}}"><a data-target="#waitreview" data-toggle="tab" ng-click="menulist='รอตรวจสอบ';vm.setLimit()">รอตรวจสอบ ({{waitreview.length || 0}})</a></li>
@@ -49,7 +48,6 @@
           </li>
         </ul>
       </div>
-      <!--  -->
       <div class="tab-content">
         <div class="tab-pane active" id="waitreview">
           <div class="row form-group headTable hidden-xs">
@@ -72,66 +70,288 @@
           <div class="row form-group border-bottom" ng-repeat="data in vm.accuralreceipts | filter:filterText | filter:{arstatus:'wait for review'} as waitreview">
 
             <div class="m-b-md" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })">
-              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
-              <label>ชื่อผู้ใช้</label>
-            </div> -->
-              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รหัสใบแจ้งหนี้</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                 <span class="list-group-item-heading" ng-bind="data.docno"></span>
               </div>
-              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
-              <label>ชื่อผู้ใช้</label>
-            </div> -->
-              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
-                <span class="list-group-item-heading" ng-bind="data.namedeliver.displayName"></span>
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ชื่อคนส่งข้าว</label>
               </div>
-              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break" ng-bind="data.namedeliver.displayName"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
-              <label>ชื่อผู้ใช้</label>
-            </div> -->
-              <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ที่อยู่</label>
+              </div>
+              <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5">
                 <span class="list-group-item-heading" ng-bind="data.namedeliver.address.address +' '+ data.namedeliver.address.district +' '+ data.namedeliver.address.subdistrict +' '+ data.namedeliver.address.province +' '+ data.namedeliver.address.postcode +' '+ '('+data.namedeliver.address.tel+')'"></span>
               </div>
-              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
-              <label>ชื่อผู้ใช้</label>
-            </div> -->
-              <div class="col-xs-7 col-sm-1 col-md-1 col-lg-1">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รวม</label>
+              </div>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
                 <span class="list-group-item-heading" ng-bind="data.totalamount"></span>
               </div>
-              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
 
-              <!-- <div class="col-xs-5 hidden-sm hidden-md hidden-lg">
-              <label>ชื่อผู้ใช้</label>
-            </div> -->
-              <div class="col-xs-7 col-sm-2 col-md-2 col-lg-2">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>วันที่สร้าง</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                 <span class="list-group-item-heading"><time am-time-ago="data.created"></time></span>
               </div>
-              <!-- <div class="row hidden-sm hidden-md hidden-lg"></div> -->
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
 
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-              <button type="button" class="btn buttonGreenForm btn-sm" ng-click="vm.statusWaitreview(data)"><span class="glyphicon glyphicon-check"></span> <span>รอยืนยัน</span></button>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="vm.remove(data)"><span class="glyphicon glyphicon-trash"></span> <span>ลบรายการ</span></button>
-              <button type="button" class="btn btn-warning btn-sm" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 text-right">
+              <button type="button" class="btn buttonGreenForm btn-xs" ng-click="vm.statusWaitreview(data)"><span class="glyphicon glyphicon-check"></span> <span>รอยืนยัน</span></button>
+              <button type="button" class="btn btn-danger btn-xs" ng-click="vm.remove(data)"><span class="glyphicon glyphicon-trash"></span> <span>ลบรายการ</span></button>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            </div>
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-right">
+              <button type="button" class="btn buttonGreenForm btn-xs" ng-click="vm.statusWaitreview(data)"><span class="glyphicon glyphicon-check"></span> <span>รอยืนยัน</span></button>
+              <button type="button" class="btn btn-danger btn-xs" ng-click="vm.remove(data)"><span class="glyphicon glyphicon-trash"> </span></button>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"> </span></button>
             </div>
 
           </div>
         </div>
+        <div class="tab-pane" id="waitconfirmed">
+          <div class="row form-group headTable hidden-xs">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">รหัสใบแจ้งหนี้</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">ชื่อคนส่งข้าว</strong>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <strong class="vertical-align-middle">ที่อยู่</strong>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+              <strong class="vertical-align-middle">รวม</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">วันที่สร้าง</strong>
+            </div>
+          </div>
+          <div class="row form-group border-bottom" ng-repeat="data in vm.accuralreceipts | filter:filterText | filter:{arstatus:'wait for confirmed'} as waitconfirmed">
 
+            <div class="m-b-md" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รหัสใบแจ้งหนี้</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading" ng-bind="data.docno"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ชื่อคนส่งข้าว</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break" ng-bind="data.namedeliver.displayName"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ที่อยู่</label>
+              </div>
+              <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5">
+                <span class="list-group-item-heading" ng-bind="data.namedeliver.address.address +' '+ data.namedeliver.address.district +' '+ data.namedeliver.address.subdistrict +' '+ data.namedeliver.address.province +' '+ data.namedeliver.address.postcode +' '+ '('+data.namedeliver.address.tel+')'"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รวม</label>
+              </div>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading" ng-bind="data.totalamount"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>วันที่สร้าง</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading"><time am-time-ago="data.created"></time></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+            </div>
+
+            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 text-right">
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            </div>
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-right">
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"> </span></button>
+            </div>
+
+          </div>
+        </div>
+        <div class="tab-pane" id="confirmed">
+          <div class="row form-group headTable hidden-xs">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">รหัสใบแจ้งหนี้</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">ชื่อคนส่งข้าว</strong>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <strong class="vertical-align-middle">ที่อยู่</strong>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+              <strong class="vertical-align-middle">รวม</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">วันที่สร้าง</strong>
+            </div>
+          </div>
+          <div class="row form-group border-bottom" ng-repeat="data in vm.accuralreceipts | filter:filterText | filter:vm.confirmed as confirmed">
+
+            <div class="m-b-md" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รหัสใบแจ้งหนี้</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading" ng-bind="data.docno"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ชื่อคนส่งข้าว</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break" ng-bind="data.namedeliver.displayName"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ที่อยู่</label>
+              </div>
+              <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5">
+                <span class="list-group-item-heading" ng-bind="data.namedeliver.address.address +' '+ data.namedeliver.address.district +' '+ data.namedeliver.address.subdistrict +' '+ data.namedeliver.address.province +' '+ data.namedeliver.address.postcode +' '+ '('+data.namedeliver.address.tel+')'"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รวม</label>
+              </div>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading" ng-bind="data.totalamount"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>วันที่สร้าง</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading"><time am-time-ago="data.created"></time></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+            </div>
+
+            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 text-right">
+              <button type="button" class="btn buttonGreenForm btn-xs" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-check"></span> <span>รับเงิน</span></button>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            </div>
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-right">
+              <button type="button" class="btn buttonGreenForm btn-xs" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-check"></span> <span>รับเงิน</span></button>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"> </span></button>
+            </div>
+
+          </div>
+        </div>
+        <div class="tab-pane" id="receipt">
+          <div class="row form-group headTable hidden-xs">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">รหัสใบแจ้งหนี้</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">ชื่อคนส่งข้าว</strong>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <strong class="vertical-align-middle">ที่อยู่</strong>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+              <strong class="vertical-align-middle">รวม</strong>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <strong class="vertical-align-middle">วันที่สร้าง</strong>
+            </div>
+          </div>
+          <div class="row form-group border-bottom" ng-repeat="data in vm.accuralreceipts | filter:filterText | filter:{arstatus:'receipt'} as receipt">
+
+            <div class="m-b-md" ui-sref="accuralreceipts.edit({ accuralreceiptId: data._id })">
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รหัสใบแจ้งหนี้</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading" ng-bind="data.docno"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ชื่อคนส่งข้าว</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading word-break" ng-bind="data.namedeliver.displayName"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>ที่อยู่</label>
+              </div>
+              <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5">
+                <span class="list-group-item-heading" ng-bind="data.namedeliver.address.address +' '+ data.namedeliver.address.district +' '+ data.namedeliver.address.subdistrict +' '+ data.namedeliver.address.province +' '+ data.namedeliver.address.postcode +' '+ '('+data.namedeliver.address.tel+')'"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>รวม</label>
+              </div>
+              <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+                <span class="list-group-item-heading" ng-bind="data.totalamount"></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+              <div class="col-xs-6 hidden-sm hidden-md hidden-lg">
+                <label>วันที่สร้าง</label>
+              </div>
+              <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                <span class="list-group-item-heading"><time am-time-ago="data.created"></time></span>
+              </div>
+              <div class="row hidden-sm hidden-md hidden-lg"></div>
+
+            </div>
+
+            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 text-right">
+              <a href="{{data.attm}}" target="_blank"><button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-new-window"></span> <span>ลิงค์การโอน</span></button></a>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"></span> <span>พิมพ์</span></button>
+            </div>
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-right">
+              <a href="{{data.attm}}" target="_blank"><button type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-new-window"></span> <span>ลิงค์การโอน</span></button></a>
+              <button type="button" class="btn btn-warning btn-xs" ui-sref="accuralreceipts.view({ accuralreceiptId: data._id })"><span class="glyphicon glyphicon-save-file"> </span></button>
+            </div>
+          </div>
+        </div>
       </div>
-      <!--  -->
     </div>
   </div>
 
 
   <!--  -->
 
-  <div class="tab-content">
+  <!-- <div class="tab-content">
     <div class="tab-pane active" id="allActive">
       <div class="tabbable tabs-left">
         <div class="row">
@@ -526,7 +746,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
